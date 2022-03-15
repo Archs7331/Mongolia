@@ -1,0 +1,95 @@
+// MONGOLIA PATCHES BY ARCHS \\
+| ONLY OVH-AFRICA , OVH-AMP AND NFO-ASIA ALL OTHER METHODS ARE ASS |
+https://asn.ipinfo.app/api/text/ipset/AS14061 also drop digi ranges nigs use them on alot of apis
+###########################################################################################
+OVH-AMP (dropping all frantech ips will help more https://asn.ipinfo.app/downloads/AS53667)
+
+iptables -A OUTPUT -p tcp -m length --length 973 -j DROP
+iptables -A INPUT -p tcp --sport 35390 -j DROP
+iptables -A INPUT -p tcp --dport 62625 -j DROP
+iptables -A INPUT -p udp --sport 3702 -j DROP
+iptables -A INPUT -p udp --dport 7784 -j DROP
+iptables -A INPUT -p udp --dport 6267 -j DROP
+iptables -I INPUT -p tcp --match string --algo kmp --string '|58 58 58 58 58 58 58 58 58 58 58 58 58|' -j DROP
+iptables -A PREROUTING -p udp -m length --length 500:1026 -j DROP
+ipset -N ovhamp nethash
+ipset -A ovhamp 104.244.76.0/24
+ipset -A ovhamp 107.189.1.0/24
+ipset -A ovhamp 107.189.12.0/24
+ipset -A ovhamp 107.189.13.0/24
+ipset -A ovhamp 107.189.8.0/24
+ipset -A ovhamp 199.19.224.0/24
+ipset -A ovhamp 199.19.226.0/24
+ipset -A ovhamp 209.141.34.0/24
+ipset -A ovhamp 199.195.254.0/24
+ipset -A ovhamp 45.61.187.0/24
+ipset -A ovhamp 45.61.188.0/24
+ipset -A ovhamp 54.36.24.0/24
+ipset -A ovhamp 178.128.0.0/24
+iptables -A INPUT -m set --match-set ovhamp src -j DROP
+###########################################################################################
+
+###########################################################################################
+OVH-AFRICA (VIP OVH METHOD LITTERALY JUST THE SAME AS OVH-AMP JUST WITH UDPRAPE & SOAP)
+
+iptables -A OUTPUT -p tcp -m length --length 973 -j DROP
+iptables -A INPUT -p tcp --sport 35390 -j DROP
+iptables -A INPUT -p tcp --dport 62625 -j DROP
+iptables -A INPUT -p udp --sport 3702 -j DROP
+iptables -A INPUT -p udp --dport 6672 -j DROP
+iptables -A INPUT -p udp --dport 37054 -j DROP
+iptables -A INPUT -p udp --dport 7777 -j DROP
+iptables -A INPUT -p udp --sport 7777 -j DROP
+iptables -A INPUT -p tcp --dport 7777 -j DROP
+iptables -A INPUT -p tcp --sport 7777 -j DROP
+iptables -I INPUT -p icmp --icmp-type 8 -j DROP
+iptables -I INPUT -p udp --match string --algo kmp --string "fefefefefe" -j DROP
+iptables -I INPUT -p tcp --match string --algo kmp --string '|58 58 58 58 58 58 58 58 58 58 58 58 58|' -j DROP
+iptables -A PREROUTING -p udp -m length --length 500:1026 -j DROP
+ipset -N ovhafrica nethash
+ipset -A ovhafrica 104.244.76.0/24
+ipset -A ovhafrica 107.189.1.0/24
+ipset -A ovhafrica 107.189.12.0/24
+ipset -A ovhafrica 107.189.13.0/24
+ipset -A ovhafrica 107.189.8.0/24
+ipset -A ovhafrica 199.19.224.0/24
+ipset -A ovhafrica 199.19.226.0/24
+ipset -A ovhafrica 209.141.34.0/24
+ipset -A ovhafrica 199.195.254.0/24
+ipset -A ovhafrica 45.61.187.0/24
+ipset -A ovhafrica 45.61.188.0/24
+ipset -A ovhafrica 54.36.24.0/24
+ipset -A ovhafrica 178.128.0.0/24
+ipset -A ovhafrica 155.133.246.0/23
+ipset -A ovhafrica 155.133.248.0/24
+ipset -A ovhafrica 162.254.192.0/24
+ipset -A ovhafrica 162.254.193.0/24
+ipset -A ovhafrica 13.107.14.0/24
+ipset -A ovhafrica 52.112.0.0/14
+ipset -A ovhafrica 216.58.215.0/24
+ipset -A ovhafrica 216.239.36.0/24
+ipset -A ovhafrica 67.199.248.0/24
+ipset -A ovhafrica 66.249.64.0/20
+ipset -A ovhafrica 163.172.0.0/16
+ipset -A ovhafrica 50.22.130.64/27
+ipset -A ovhafrica 211.239.128.0/18
+ipset -A ovhafrica 217.72.192.0/20
+ipset -A ovhafrica 77.247.111.0/24
+ipset -A ovhafrica 37.49.231.0/24
+ipset -A ovhafrica 37.49.228.0/24
+ipset -A ovhafrica 137.184.151.0/24
+iptables -A INPUT -m set --match-set ovhafrica src -j DROP
+###########################################################################################
+
+###########################################################################################
+NFO-ASIA
+
+iptables -I INPUT -p icmp --icmp-type 5 -j DROP
+iptables -A INPUT -p udp --dport 50008 -j DROP
+iptables -A INPUT -p udp --sport 64527 -j DROP
+###########################################################################################
+
+
+
+iptables -A INPUT -p TCP --sport 1600:25861 -j DROP (these may drop ports on running services)
+iptables -A OUTPUT -p TCP --sport 1600:25861 -j DROP (these may drop ports on running services)
